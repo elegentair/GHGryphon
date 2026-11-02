@@ -26,6 +26,7 @@ public class App {
 
         var app = Javalin.create(config -> {
             config.routes.get("/", ctx -> ctx.result("Hello World"));
+            //  ------------------------get methods--------------------------------
             config.routes.get("/api/users", ctx -> {
                 // finds UserEntity types (UserEntity is the file in models/ and puts them into a list)
                 var users = database.find(UserEntity.class).findList();
@@ -36,6 +37,18 @@ public class App {
                 // same for clubs
                 var clubs = database.find(ClubEntity.class).findList();
                 ctx.json(clubs);
+            });
+            // ------------------------post methods-----------------------------------
+            config.routes.post("/api/users",  ctx -> {
+                UserEntity user = ctx.bodyAsClass(UserEntity.class);
+                database.save(user);
+                ctx.status(201).json(user);
+            });
+
+            config.routes.post("/api/clubs", ctx -> {
+                ClubEntity club = ctx.bodyAsClass(ClubEntity.class);
+                database.save(club);
+                ctx.status(201).json(club);
             });
         }).start(7070);
     }
