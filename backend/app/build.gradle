@@ -8,6 +8,8 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    // ebean plugin
+    id('io.ebean') version '19.6.0'
 }
 
 repositories {
@@ -16,23 +18,32 @@ repositories {
 }
 
 dependencies {
-    // Use JUnit Jupiter for testing.
-    testImplementation libs.junit.jupiter
-
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    // This dependency is used by the application.
+    // Javalin
     implementation 'io.javalin:javalin:7.2.4'
     // logger
     implementation 'org.slf4j:slf4j-simple:2.0.20'
     // Object Mapper
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.22.4'
+
+    // ebean
+    implementation 'io.ebean:ebean:19.6.0'
+    implementation 'io.ebean:ebean-ddl-generator:19.6.0'
+    annotationProcessor 'io.ebean:querybean-generator:19.6.0'
+
+    // database
+    implementation 'com.h2database:h2:2.3.232'
+
+    // Testing
+    testImplementation 'io.ebean:ebean-test:19.6.0'
+    testImplementation libs.junit.jupiter
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 }
 
 // Apply a specific Java toolchain to ease working on different environments.
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(27)
+        languageVersion = JavaLanguageVersion.of(25)
     }
 }
 

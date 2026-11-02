@@ -1,40 +1,42 @@
 package app;
 
+import io.ebean.Database;
+import io.ebean.datasource.DataSourceBuilder;
 import io.javalin.Javalin;
-import java.util.ArrayList;
+
+import app.models.UserEntity;
+import app.models.ClubEntity;
 
 public class App {
 
-    public record User (
-        Integer id,
-        String name,
-        String email,
-        Integer grade
-    ) {}
-
-    public record Club (
-        Integer id,
-        String name,
-        Integer memberCount
-    ) {}
-
     public static void main(String[] args) {
-        // users dummy list
-        var users = new ArrayList<User>();
-        // Make dummy users:
-        users.add(new User(1, "Samuel Locke", "s979920@student.knoxschools.org", 12));
-        users.add(new User(2, "Hayden Hellsten", "s947970@student.knoxschools.org", 12));
+        // database config:
+        var dataSource = DataSourceBuilder.create()
+            .username("sa")
+            .password("")
+            // store data in file (data/clubs)
+            .url("jdbc:h2:./data/clubs;");
 
-        // clubs dummy list
-        var clubs = new ArrayList<Club>();
-        // Add dummmy clubs
-        clubs.add(new Club(1, "CSHS", 23));
-        clubs.add(new Club(2, "Equality Club", 19));
+        Database database = Database.builder()
+            .name("db")
+            .dataSourceBuilder(dataSource)
+            .ddlGenerate(true) // generate table if not already existing
+            .ddlRun(true) // run table generation
+            .build();
 
         var app = Javalin.create(config -> {
             config.routes.get("/", ctx -> ctx.result("Hello World"));
-            config.routes.get("/api/users", ctx -> ctx.json(users));
-            config.routes.get("/api/clubs", ctx -> ctx.json(clubs));
+            config.routes.get("/api/users", ctx -> {
+                // finds UserEntity types (UserEntity is the file in models/ and puts them into a list)
+                var users = database.find(UserEntity.class).findList();
+                // export list to json
+                ctx.json(users);
+            });
+            config.routes.get("/api/clubs", ctx -> {
+                // same for clubs
+                var clubs = database.find(ClubEntity.class).findList();
+                ctx.json(clubs);
+            });
         }).start(7070);
     }
 }
