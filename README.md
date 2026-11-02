@@ -10,12 +10,13 @@ A web application allowing L&amp;N students and staff to view, choose, and manag
 ## Setup
 ### Prerequisites:
 - Java 27
+- Gradle 9.8.2
 ### Frameworks (managed by Gradle):
-  - Javalin - Web Framework  
-  - jOOQ - Database
-  - Jackson Databind - Converts between Java objects & JSON
-  - SLF4J Simple - Javalin logger
-  - JUnit Jupiter - Testing framework
+- Javalin - Web framework  
+- Ebean - Implements SQL
+- Jackson Databind - Converts between Java objects & JSON
+- SLF4J Simple - Javalin logger
+- JUnit Jupiter - Testing framework
 
 _Version information and other specifics are available in the Gradle build file:_ ```backend/app/build.gradle```
 
