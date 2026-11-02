@@ -4,9 +4,14 @@ A web application allowing L&amp;N students and staff to view, choose, and manag
 ## Setup
 ### Prerequisites:
 - Java 27
-### Frameworks (managed by gradle):  
+### Frameworks (managed by Gradle):  
   - Javalin - Web Framework  
-  - jooq - Database
+  - jOOQ - Database
+  - Jackson Databind - Converts between Java objects & JSON
+  - SLF4J Simple - Javalin logger
+  - JUnit Jupiter - Testing framework
+
+_Version information and other specifics are available in the Gradle build file:_ ```backend/app/build.gradle```
 
 **Architecture flowchart (WIP):**
 <p align="center">
@@ -16,6 +21,6 @@ A web application allowing L&amp;N students and staff to view, choose, and manag
 Recommended: Install Temurin Java 27.0.0.0+35 with sdkman:
 ```sdk install java 27.0.0.0+35-tem```
 
-Install gradle: ```sdk install gradle```
+Install Gradle: ```sdk install gradle```
 
 Run backend: Ensure you are in the backend directory and run ```./gradew run```
