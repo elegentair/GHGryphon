@@ -5,7 +5,7 @@ A web application allowing L&amp;N students and staff to view, choose, and manag
 ### Prerequisites:
 - Java 25 <span style="font-size: smaller;">(required for LTS)</span>
 - Gradle 9.8.2
-### Frameworks (managed by Gradle):
+### Frameworks (Managed by Gradle):
 - Javalin - Web framework  
 - Ebean - Implements SQL
 - Jackson Databind - Converts between Java objects & JSON
@@ -14,10 +14,18 @@ A web application allowing L&amp;N students and staff to view, choose, and manag
 
 _Version information and other specifics are available in the Gradle build file:_ ```backend/app/build.gradle```
 
-#### Architecture flowchart (WIP):
+#### Architecture Flowchart (WIP):
 <p align="center">
   <img src="assets/flowchart.png" alt="Microsoft Visio flowchart summarizing the backend's architecture" width="75%" style="margin-left: auto; margin-right: auto">
 </p>
+
+### Functionality:
+- Local H2 SQL database (users, clubs)
+  - Intention: Implement PostgreSQL (remote database)
+  - Intention: Add other necessary GH records & relationally link
+- GET methods (users, clubs)
+- POST methods (users, clubs)
+  - Intention: Add PUT/PATCH and DELETE methods
 
 ### Instructions:
 **Recommended:** Install Temurin Java 25.0.5.0+8 with sdkman:
