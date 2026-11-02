@@ -1,15 +1,9 @@
-<style>
-  .smDescript {
-    font-size: smaller;
-  }
-</style>
-
 # GHGryphon
 A web application allowing L&amp;N students and staff to view, choose, and manage genius hour clubs.
 
-## Setup
+## Backend Setup
 ### Prerequisites:
-- Java 27
+- Java 25 <span style="font-size: smaller;">(required for LTS)</span>
 - Gradle 9.8.2
 ### Frameworks (managed by Gradle):
 - Javalin - Web framework  
@@ -26,9 +20,9 @@ _Version information and other specifics are available in the Gradle build file:
 </p>
 
 ### Instructions:
-**Recommended:** Install Temurin Java 27.0.0.0+35 with sdkman:
-```sdk install java 27.0.0.0+35-tem``` <span class="smDescript">(other Java 27 builds should work as well)</span>
+**Recommended:** Install Temurin Java 25.0.5.0+8 with sdkman:
+```sdk install java 25.0.5.0+8-tem``` <span style="font-size: smaller;">(other Java 25 builds should work as well)</span>
 
-Install Gradle <span class="smDescript">(automatically handles dependencies)</span>: ```sdk install gradle```
+Install Gradle <span style="font-size: smaller;">(automatically handles dependencies)</span>: ```sdk install gradle```
 
 Run backend: Ensure you are in the backend directory and run ```./gradew run```
