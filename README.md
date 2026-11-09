@@ -23,9 +23,8 @@ _Version information and other specifics are available in the Gradle build file:
 - Local H2 SQL database (users, clubs)
   - Intention: Implement PostgreSQL (remote database)
   - Intention: Add other necessary GH records & relationally link
-- GET methods (users, clubs)
-- POST methods (users, clubs)
-  - Intention: Add PUT/PATCH and DELETE methods
+- GET, POST, PUT, DELETE methods (users, clubs)
+  - Possibility: Add PATCH method for transfer efficiency
 
 ### Instructions:
 **Recommended:** Install Temurin Java 25.0.5.0+8 with sdkman:
