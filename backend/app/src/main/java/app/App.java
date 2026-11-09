@@ -9,6 +9,18 @@ import app.models.ClubEntity;
 
 public class App {
 
+    public static void genericGet(Context ctx, T type) {
+        // finds instances of T (T is the file in models) and puts them into a list)
+        var results = database.find(type.class).findList();
+        // export list to json
+        ctx.json(results);
+    }
+    public static void genericPost(Context ctx, T type) {
+        T newDatum = ctx.bodyAsClass(T.class);
+        database.save(newDatum);
+        ctx.status(201).json(newDatum);
+    }
+
     public static void main(String[] args) {
         // database config:
         var dataSource = DataSourceBuilder.create()
@@ -27,17 +39,8 @@ public class App {
         var app = Javalin.create(config -> {
             config.routes.get("/", ctx -> ctx.result("Hello World"));
             //  -------------------------get methods-------------------------
-            config.routes.get("/api/users", ctx -> {
-                // finds UserEntity types (UserEntity is the file in models/ and puts them into a list)
-                var users = database.find(UserEntity.class).findList();
-                // export list to json
-                ctx.json(users);
-            });
-            config.routes.get("/api/clubs", ctx -> {
-                // same for clubs
-                var clubs = database.find(ClubEntity.class).findList();
-                ctx.json(clubs);
-            });
+            config.routes.get("/api/users", ctx -> genericGet(ctx, UserEntity.class));
+            config.routes.get("/api/clubs", ctx -> genericGet(ctx, ClubEntity.class));
             // -------------------------post methods-------------------------
             config.routes.post("/api/users",  ctx -> {
                 UserEntity user = ctx.bodyAsClass(UserEntity.class);
