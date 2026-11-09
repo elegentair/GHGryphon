@@ -5,11 +5,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import app.HttpInterface;
+
 @Entity // tells ebean that this is a sql table
 @Table(name = "clubs") // names the table "clubs"
 
 // class is connected to ebeans model class
-public class ClubEntity extends Model { // required class, file name
+public class ClubEntity extends Model implements HttpInterface { // required class, file name
 
     @Id // setting primary key to id (unique identifier for each club)
     public Long id; // defines id as a 64 bit int, ebean will auto generate for each club
@@ -22,5 +24,9 @@ public class ClubEntity extends Model { // required class, file name
     public ClubEntity(String name, Integer memberCount) {
         this.name = name;
         this.memberCount = memberCount;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

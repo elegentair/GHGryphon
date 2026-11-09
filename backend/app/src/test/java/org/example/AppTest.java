@@ -5,10 +5,47 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import app.App;
 
 class AppTest {
-    @Test void appHasAGreeting() {
+    /*@Test
+    void appHasAGreeting() {
         //App classUnderTest = new App();
         //assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
+    }*/
+
+    App app;
+
+    @BeforeAll
+    static void initializeApp() {
+        app = new App();
+        app.initializeApp();
+    }
+
+    @AfterAll
+    static void stopApp() {
+        app.stop();
+    }
+
+    @Test
+    static void testPost() throws Exception {
+        // POST test
+        HttpRequest postRequest = HttpRequest.newBuilder()
+                .uri(URI.create("http://localhost:7070/api/users"))
+                .header("Content-Type", "application/json")
+                .POST(HttpRequest.BodyPublishers.ofString(
+                    "{\"name\":\"Alice\",\"email\":\"alice@example.com\"}"
+                )).build();
+        HttpResponse<String> postResponse = client.send(postRequest, HttpResponse.BodyHandlers.ofString());
+        System.out.println(postResponse.statusCode());
+        System.out.println(postResponse.body());
+        // GET test
+        HttpRequest getRequest = HttpRequest.newBuilder()
+                .uri(URI.create(baseUrl + "/api/users"))
+                .GET()
+                .build();
+        HttpResponse<String> getResponse = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
+        System.out.println(getResponse.statusCode());
+        System.out.println(postResponse.body());
     }
 }
