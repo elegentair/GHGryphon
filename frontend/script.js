@@ -1,15 +1,15 @@
+const website = "https://6aea96643d3dd3d37be6cb9a.mockapi.io/api/v1"
 document.addEventListener("DOMContentLoaded", function () {
-  doSomething();
+  getPerson();
 });
 
 
-async function doSomething() {
+async function getPerson() {
   try {
-    const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
-    const data = await response.json();
-    console.log(data["name"]);
-    document.getElementById('output').innerText = data["name"];
-    document.getElementById('description').innerText = data["phone"];
+    const allclubs = await fetch(`${website}/users`);
+    console.log(allclubs)
+    //document.getElementById('output').innerText = data["name"];
+    //document.getElementById('description').innerText = data["phone"];
   } catch (error) {
     console.error('Fetch error:', error);
   }
