@@ -10,7 +10,7 @@ async function getPerson() {
     all_users = await response.json();
     // document.getElementById('ans').innerText = all_users;
     for (let user of all_users) {
-        document.getElementById('ans').innerText += `\n${user["name"]}`;
+        document.getElementById('ans').innerText += `\n${user["name"] + user["email"]}`;
     }
         // console.log(response);
     //document.getElementById('output').innerText = data["name"];
