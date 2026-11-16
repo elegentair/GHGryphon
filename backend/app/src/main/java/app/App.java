@@ -15,6 +15,8 @@ public class App {
     public void initializeApp() {
     //public static void main(String[] args) {
         // database config:
+        Seeder.seed();
+
         var dataSource = DataSourceBuilder.create()
             .username("sa")
             .password("")
