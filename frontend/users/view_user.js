@@ -12,9 +12,10 @@ async function getPerson() {
     document.getElementById("ans").innerHTML +=
       `<div class='user_card' data-id='${user["id"]}'>
         <img src='${user["avatar"]}' alt='${user["name"]}' width='100' height='100'>
-        <p>${user["name"]} ${user["email"]}</p>
-        <a class='card_edit_button' href='edit_user.html?id=${user["id"]}'>Edit</a>
+        // <p>${user["name"]} ${user["email"]}</p>
+        // <a class='card_edit_button' href='edit_user.html?id=${user["id"]}'>Edit</a>
       </div>`;
+
   }
     // document.getElementById('ans').innerText = all_users;
     // for (let user of all_users) {
