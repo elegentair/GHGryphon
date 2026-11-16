@@ -1,8 +1,8 @@
 :root {
   --color-ink: #1d2b2a;
   --color-muted: #60716d;
-  --color-primary: #176b58;
-  --color-primary-dark: #105341;
+  --color-primary: #0d4717;
+  --color-primary-dark: #0d4717;
   --color-accent: #d6a542;
   --color-surface: #ffffff;
   --color-background: #f3f6f3;
@@ -135,7 +135,7 @@
 @media (hover: hover) {
   .club_card:hover {
     box-shadow: 0 14px 32px rgb(22 48 39 / 14%);
-    transform: translateY(-3px);
+    transform: translateY(-8px);
   }
 }
 
