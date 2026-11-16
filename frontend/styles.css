@@ -1,0 +1,142 @@
+:root {
+  --color-ink: #1d2b2a;
+  --color-muted: #60716d;
+  --color-primary: #176b58;
+  --color-primary-dark: #105341;
+  --color-accent: #d6a542;
+  --color-surface: #ffffff;
+  --color-background: #f3f6f3;
+  --color-border: #dce5df;
+  --shadow-card: 0 8px 24px rgb(22 48 39 / 8%);
+}
+
+.intro {
+  width: 100%;
+}
+
+.club_container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1.25rem;
+}
+
+.club_card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 160ms ease, transform 160ms ease;
+}
+
+.club_card[data-id] {
+  cursor: pointer;
+}
+
+.club_card img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #e6ece8;
+  object-fit: cover;
+}
+
+.club_card h3 {
+  margin: 1rem 1rem 0.35rem;
+  color: var(--color-ink);
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.club_card p {
+  flex: 1;
+  margin: 0 1rem 1rem;
+  color: var(--color-muted);
+}
+
+.card_edit_button {
+  display: inline-flex;
+  width: fit-content;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-primary);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 650;
+  padding: 0.55rem 1rem;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.card_edit_button:hover {
+  background: var(--color-primary-dark);
+  color: #fff;
+}
+
+.club_card .card_edit_button {
+  margin: 0 1rem 1rem;
+}
+
+.add_card {
+  min-height: 250px;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #a9beb2;
+  background: rgb(255 255 255 / 55%);
+  box-shadow: none;
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.add_card:hover {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  color: var(--color-primary-dark);
+}
+
+.plus {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.add_label {
+  margin-top: 0.5rem;
+  font-weight: 650;
+}
+
+.error {
+  padding: 0.75rem 1rem;
+  border: 1px solid #edc5c1;
+  border-radius: 8px;
+  background: #fff3f1;
+  color: #8d2921;
+}
+
+#ans {
+  margin-top: 1rem;
+  color: var(--color-primary-dark);
+  font-weight: 650;
+}
+
+@media (hover: hover) {
+  .club_card:hover {
+    box-shadow: 0 14px 32px rgb(22 48 39 / 14%);
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .club_card {
+    transition: none;
+  }
+}

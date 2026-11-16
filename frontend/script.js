@@ -5,29 +5,26 @@ document.addEventListener("DOMContentLoaded", function () {
 let all_clubs = []
 
 async function getPerson() {
-    const response = await fetch(`${website}/clubs`);
-    all_clubs = await response.json();
-  const output = document.getElementById('club');
-  for (const club of all_clubs) {
-    const card = document.createElement('div');
-    card.className = 'club_card';
-    card.dataset.id = club.id;
-    const image = document.createElement('img');
-    image.src = club.thumbnail;
-    image.alt = club.name;
-    image.style.width = '150px';
-    image.style.height = '150px';
-    image.style.objectFit = 'cover';
-    const heading = document.createElement('h3');
-    heading.textContent = club.name;
-    const description = document.createElement('p');
-    description.textContent = club.description;
-    const editLink = document.createElement('a');
-    editLink.className = 'class_edit_button';
-    editLink.href = `edit_club.html?id=${encodeURIComponent(club.id)}`;
-    editLink.textContent = 'Edit';
-    card.append(image, heading, description, editLink);
-    output.append(card);
-    }
+  const response = await fetch(`${website}/clubs`);
+  all_clubs = await response.json();
+  for (let club of all_clubs) {
+    document.getElementById('clubs').innerHTML +=
+    `<div class='club_card' data-id='${club['id']}'>
+    <img src='${club['thumbnail']}' alt ='${club['name']}'>
+    <h3>${club['name']}</h3>
+    <p>${club['description']}</p>
+    <a class='card_edit_button' href='edit_club.html?id=${club['id']}'>Edit</a>
+    </div>`
+
+  }
+  document.getElementById='clubs'.innerHTML +=
+   `<a href='new_club.html' class='club_card add_card' aria-label='Create a new club'>
+      <span class='plus'>+</span>
+      <span class='add_label'>Add a new club</span>
+    </a>`
 }
-console.log('hello')
+document.getElementById('clubs').addEventListener('click', (event) => {
+  const card = event.target.closest('.club_card[data-id]');
+  if (!card || event.target.closest('.card_edit_button')) return;
+  window.location.href = `club.html?id=${card.dataset.id}`;
+});
