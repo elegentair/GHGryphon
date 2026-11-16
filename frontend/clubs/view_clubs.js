@@ -1,92 +1,33 @@
-const website = "https://6aea96643d3dd3d37be6cb9a.mockapi.io/api/v1";
-const clubsContainer = document.getElementById("clubs");
-const clubsStatus = document.getElementById("clubs-status");
+const API_ORIGIN = "https://6aea96643d3dd3d37be6cb9a.mockapi.io";
+const API_URL = `${API_ORIGIN}/api/v1`;
 
-async function getPerson() {
-  let clubs;
+let all_clubs = [];
 
-  try {
-    const response = await fetch(`${website}/clubs`);
-    if (!response.ok) {
-      throw new Error(`Club request failed with status ${response.status}`);
-    }
-
-    clubs = await response.json();
-    if (
-      !Array.isArray(clubs) ||
-      clubs.some(
-        (club) =>
-          !club ||
-          (typeof club.id !== "string" && typeof club.id !== "number") ||
-          typeof club.name !== "string"
-      )
-    ) {
-      throw new Error("The clubs response has an unexpected format");
-    }
-  } catch (error) {
-    console.error("Could not load clubs:", error);
-    clubsStatus.textContent = "Could not load clubs. Please try again later.";
-    return;
+async function fetchClubs() {
+  const response = await fetch(`${API_URL}/clubs`);
+  all_clubs = await response.json();
+  console.log(all_clubs);
+  for (let club of all_clubs) {
+    document.getElementById("clubs").innerHTML +=
+      `<div class='club_card' data-id='${club["id"]}'>
+        <img src='${club["thumbnail"]}' alt='${club["name"]}'>
+        <h3>${club["name"]}</h3>
+        <p>${club["description"]}</p>
+        <a class='card_edit_button' href='edit_club.html?id=${club["id"]}'>Edit</a>
+      </div>`;
   }
 
-  renderClubs(clubs);
-  clubsStatus.textContent = clubs.length === 0 ? "No clubs found yet." : "";
+  document.getElementById("clubs").innerHTML +=
+    `<a href='new_club.html' class='club_card add_card' aria-label='Create a new club'>
+      <span class='plus'>+</span>
+      <span class='add_label'>Add a new club</span>
+    </a>`;
 }
 
-function renderClubs(clubs) {
-  const cards = document.createDocumentFragment();
+document.getElementById("clubs").addEventListener("click", (event) => {
+  const card = event.target.closest(".club_card[data-id]");
+  if (!card || event.target.closest(".card_edit_button")) return;
+  window.location.href = `club.html?id=${card.dataset.id}`;
+});
 
-  for (const club of clubs) {
-    const id = encodeURIComponent(String(club.id));
-    const card = document.createElement("article");
-    card.className = "club_card";
-
-    const clubLink = document.createElement("a");
-    clubLink.className = "club_card_link";
-    clubLink.href = `club.html?id=${id}`;
-
-    if (typeof club.thumbnail === "string" && club.thumbnail.length > 0) {
-      const image = document.createElement("img");
-      image.src = club.thumbnail;
-      image.alt = "";
-      image.loading = "lazy";
-      clubLink.append(image);
-    }
-
-    const title = document.createElement("h3");
-    title.textContent = club.name;
-    clubLink.append(title);
-
-    const description = document.createElement("p");
-    description.textContent =
-      typeof club.description === "string" ? club.description : "";
-    clubLink.append(description);
-
-    const editLink = document.createElement("a");
-    editLink.className = "card_edit_button";
-    editLink.href = `edit_club.html?id=${id}`;
-    editLink.textContent = "Edit";
-
-    card.append(clubLink, editLink);
-    cards.append(card);
-  }
-
-  const addCard = document.createElement("a");
-  addCard.href = "new_club.html";
-  addCard.className = "club_card add_card";
-  addCard.setAttribute("aria-label", "Create a new club");
-
-  const plus = document.createElement("span");
-  plus.className = "plus";
-  plus.textContent = "+";
-
-  const addLabel = document.createElement("span");
-  addLabel.className = "add_label";
-  addLabel.textContent = "Add a new club";
-
-  addCard.append(plus, addLabel);
-  cards.append(addCard);
-  clubsContainer.replaceChildren(cards);
-}
-
-getPerson();
+fetchClubs();
