@@ -16,13 +16,19 @@ public class ClubEntity extends Model implements HttpInterface { // required cla
     @Id // setting primary key to id (unique identifier for each club)
     public Long id; // defines id as a 64 bit int, ebean will auto generate for each club
     public String name; // club name
+    public String imageURL; // club image
+    public String description; // club description
+    public String creationTimestamp; // timestamp of club creation
     public Integer memberCount; // member count
 
     public ClubEntity() {} // empty construtor for this file needed by ebean
 
     // constructor we use to make clubs in java code
-    public ClubEntity(String name, Integer memberCount) {
+    public ClubEntity(String name, String imageURL, String description, String creationTimestamp, Integer memberCount) {
         this.name = name;
+        this.imageURL = imageURL;
+        this.description = description;
+        this.creationTimestamp = creationTimestamp;
         this.memberCount = memberCount;
     }
 

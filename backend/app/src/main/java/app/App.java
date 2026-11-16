@@ -11,6 +11,7 @@ public class App {
     // this line is not necessary if you are using this file to store a main function to run the app
     private Javalin appInstance;
     
+    // this is a constructor instead of a main function for the purposes of JUnit Jupiter testing
     public void initializeApp() {
     //public static void main(String[] args) {
         // database config:

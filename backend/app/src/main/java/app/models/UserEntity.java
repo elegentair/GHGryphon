@@ -17,14 +17,16 @@ public class UserEntity extends Model implements HttpInterface { // required cla
     public Long id; // defines id as a 64 bit int, ebean will auto generate for each club
     public String name; // name of user
     public String email; // user email
+    public String imageURL; // profile picture URL
     public Integer grade; // user grade
 
     public UserEntity() {} // empty construtor for this file needed by ebean
 
     // constructor we use to make users in java code
-    public UserEntity(String name, String email, Integer grade) {
+    public UserEntity(String name, String email, String imageURL, Integer grade) {
         this.name = name;
         this.email = email;
+        this.imageURL = imageURL;
         this.grade = grade;
     }
 
