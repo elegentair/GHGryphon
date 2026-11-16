@@ -32,4 +32,4 @@ _Version information and other specifics are available in the Gradle build file:
 
 Install Gradle <span style="font-size: smaller;">(automatically handles dependencies)</span>: ```sdk install gradle```
 
-Run backend: Ensure you are in the backend directory and run ```./gradew run```
+Run backend: Ensure you are in the backend directory and run ```./gradlew run```

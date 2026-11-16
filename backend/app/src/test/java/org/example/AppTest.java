@@ -7,6 +7,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import app.App;
 
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+
 class AppTest {
     /*@Test
     void appHasAGreeting() {
@@ -14,22 +19,18 @@ class AppTest {
         //assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }*/
 
-    App app;
-
-    @BeforeAll
-    static void initializeApp() {
-        app = new App();
-        app.initializeApp();
-    }
-
-    @AfterAll
-    static void stopApp() {
-        app.stop();
-    }
+    private static App app;
+    private static final HttpClient client = HttpClient.newHttpClient();
 
     @Test
-    static void testPost() throws Exception {
+    void testPost() throws Exception {
+        // setup
+        app = new App();
+        app.initializeApp();
+        app.startApp(7070);
+        
         // POST test
+        // port 7070 is hardcoded into this for now (change if you would like)
         HttpRequest postRequest = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:7070/api/users"))
                 .header("Content-Type", "application/json")
@@ -41,11 +42,14 @@ class AppTest {
         System.out.println(postResponse.body());
         // GET test
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(URI.create(baseUrl + "/api/users"))
+                .uri(URI.create("http://localhost:7070/api/users"))
                 .GET()
                 .build();
         HttpResponse<String> getResponse = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
         System.out.println(getResponse.statusCode());
         System.out.println(postResponse.body());
+
+        // cleanup
+        app.stopApp();
     }
 }

@@ -7,8 +7,9 @@ import io.javalin.Javalin;
 import app.models.UserEntity;
 import app.models.ClubEntity;
 
-public class App extends Javalin {
-
+public class App {
+    private Javalin appInstance;
+    
     public void initializeApp() {
     //public static void main(String[] args) {
         // database config:
@@ -31,7 +32,7 @@ public class App extends Javalin {
         // return the Javalin app
         // if you are only running App.java, you can use `var app = ` instead of `return`
         // and restore the main function at the top rather than using the default constructor
-        /*var app = */ return Javalin.create(config -> {
+        /*var app = */ appInstance = Javalin.create(config -> {
             config.routes.get("/", ctx -> ctx.result("Hello World"));
             
             //  -------------------------get methods-------------------------
@@ -49,6 +50,14 @@ public class App extends Javalin {
             // -------------------------delete methods-------------------------
             config.routes.delete("/api/users/{id}", ctx -> userHandler.delete(ctx, "User"));
             config.routes.delete("/api/clubs/{id}", ctx -> clubHandler.delete(ctx, "Club"));
-        }).start(7070);
+        });
+    }
+
+    public void startApp(int port) {
+        appInstance.start(port);
+    }
+
+    public void stopApp() {
+        appInstance.stop();
     }
 }
