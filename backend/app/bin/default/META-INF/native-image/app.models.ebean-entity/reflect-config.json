@@ -1,0 +1,5 @@
+[
+  {"name": "app.models.ClubEntity", "allDeclaredConstructors": true, "allDeclaredFields": true},
+  {"name": "app.models.UserEntity", "allDeclaredConstructors": true, "allDeclaredFields": true}
+]
+

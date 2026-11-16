@@ -1,13 +1,7 @@
 package app;
 
 import io.ebean.Database;
-import io.ebean.datasource.DataSourceBuilder;
-import io.javalin.Javalin;
 import io.javalin.http.Context;
-
-import app.HttpInterface;
-import app.models.UserEntity;
-import app.models.ClubEntity;
 
 public class HttpHandler<T extends HttpInterface> {
     public Database database;
