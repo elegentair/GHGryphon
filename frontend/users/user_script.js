@@ -1,5 +1,5 @@
 // const website = "https://6aea96643d3dd3d37be6cb9a.mockapi.io/api/v1"
-function click(){
+function showHello(){
 // //   getPerson();
     document.getElementById("ans").innerText = "hello";
 };
