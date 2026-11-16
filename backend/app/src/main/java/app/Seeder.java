@@ -1,3 +1,4 @@
+package app;
 import io.ebean.DB;
 import java.util.List;
 import app.models.UserEntity;
