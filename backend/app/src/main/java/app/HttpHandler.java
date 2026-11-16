@@ -12,11 +12,26 @@ public class HttpHandler<T extends HttpInterface> {
         this.tClass = tClass;
     }
     
-    public void get(Context ctx) {
+    public void getDB(Context ctx) {
         // finds instances of T (T is the file in models) and puts them into a list)
         var results = database.find(tClass).findList();
         // export list to json
         ctx.json(results);
+    }
+    // debugT is included as an argument in some of these constructors to output a specific
+    // 404 message if a resource is not found (removing it if it is unnecessary wont cause problems)
+    public void getByID(Context ctx, String debugT) {
+        // get and validate the id in the url
+        long id = ctx.pathParamAsClass("id", Long.class).get();
+        // search the database for the result by its id
+        var result = database.find(tClass, id);
+        // check that the result exists
+        if (result == null) {
+            ctx.status(404).result(debugT + " not found"); // HTTP 404 Not Found
+            return;
+        }
+        // export singular result to json (same deal as before)
+        ctx.json(result);
     }
     public void post(Context ctx) {
         T newDatum = ctx.bodyAsClass(tClass);
@@ -24,9 +39,10 @@ public class HttpHandler<T extends HttpInterface> {
         ctx.status(201).json(newDatum); // HTTP 201 Created
     }
     public void put(Context ctx, String debugT) {
-        // get and validate the id in the url
+        // same validation process of the id in the URL as in getByID
         long id = ctx.pathParamAsClass("id", Long.class).get();
-        // check that the item actually exists
+        // the result of database.find() is no longer stored separately
+        // since the get result is not needed anymore
         if (database.find(tClass, id) == null) {
             ctx.status(404).result(debugT + " not found"); // HTTP 404 Not Found
             return;
@@ -40,7 +56,7 @@ public class HttpHandler<T extends HttpInterface> {
     public void delete(Context ctx, String debugT) {
         // check if the user exists again
         long id = ctx.pathParamAsClass("id", Long.class).get();
-        // existingUser is stored as a variable now since it is reused later
+        // existingUser is stored as a variable (like in getByID) since it is reused later
         T existingUser = database.find(tClass, id);
         if (existingUser == null) {
             ctx.status(404).result(debugT + " not found");

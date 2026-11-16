@@ -8,6 +8,7 @@ import app.models.UserEntity;
 import app.models.ClubEntity;
 
 public class App {
+    // this line is not necessary if you are using this file to store a main function to run the app
     private Javalin appInstance;
     
     public void initializeApp() {
@@ -29,15 +30,17 @@ public class App {
         HttpHandler<UserEntity> userHandler = new HttpHandler<>(database, UserEntity.class);
         HttpHandler<ClubEntity> clubHandler = new HttpHandler<>(database, ClubEntity.class);
 
-        // return the Javalin app
-        // if you are only running App.java, you can use `var app = ` instead of `return`
-        // and restore the main function at the top rather than using the default constructor
-        /*var app = */ appInstance = Javalin.create(config -> {
+        // you do not need to store this as a variable if you are using this file to store a main function for the app
+        // unless you need to store a reference to the Javalin instance to stop it later (currently not implemented)
+        appInstance = Javalin.create(config -> {
             config.routes.get("/", ctx -> ctx.result("Hello World"));
             
-            //  -------------------------get methods-------------------------
-            config.routes.get("/api/users", ctx -> userHandler.get(ctx));
-            config.routes.get("/api/clubs", ctx -> clubHandler.get(ctx));
+            //  -------------------------get methods (entire db)-------------------------
+            config.routes.get("/api/users", ctx -> userHandler.getDB(ctx));
+            config.routes.get("/api/clubs", ctx -> clubHandler.getDB(ctx));
+            //  -------------------------get methods (one entry)-------------------------
+            config.routes.get("/api/users/{id}", ctx -> userHandler.getByID(ctx, "User"));
+            config.routes.get("/api/clubs/{id}", ctx -> clubHandler.getByID(ctx, "Club"));
             // -------------------------post methods-------------------------
             config.routes.post("/api/users", ctx -> userHandler.post(ctx));
             config.routes.post("/api/clubs", ctx -> clubHandler.post(ctx));
@@ -53,6 +56,7 @@ public class App {
         });
     }
 
+    // these functions are not necessary if you are using this file to store a main function
     public void startApp(int port) {
         appInstance.start(port);
     }

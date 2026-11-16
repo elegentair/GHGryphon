@@ -32,7 +32,7 @@ class AppTest {
         // POST test
         // port 7070 is hardcoded into this for now (change if you would like)
         HttpRequest postRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:7070/api/users"))
+                .uri(URI.create("http://localhost:7070/api/users/"))
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(
                     "{\"name\":\"Alice\",\"email\":\"alice@example.com\"}"
@@ -42,7 +42,7 @@ class AppTest {
         System.out.println(postResponse.body());
         // GET test
         HttpRequest getRequest = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:7070/api/users"))
+                .uri(URI.create("http://localhost:7070/api/users/1"))
                 .GET()
                 .build();
         HttpResponse<String> getResponse = client.send(getRequest, HttpResponse.BodyHandlers.ofString());
