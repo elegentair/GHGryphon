@@ -9,7 +9,7 @@ async function fetchClubs() {
   console.log(all_clubs);
   for (let club of all_clubs) {
     document.getElementById("clubs").innerHTML +=
-      `<div class='club_card' data-id='${club["id"]}'>
+      `<div class='club_card' data-id='${club[id]}'>
         <img src='${club["thumbnail"]}' alt='${club["name"]}'>
         <h3>${club["name"]}</h3>
         <p>${club["description"]}</p>
