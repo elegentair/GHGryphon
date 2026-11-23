@@ -1,10 +1,9 @@
-const API_ORIGIN = "http://127.0.0.1:7070";
-const API_URL = `${API_ORIGIN}/api`;
+const CLUBS_API_URL = new URL("http://127.0.0.1:7070/api/clubs");
 
 let all_clubs = [];
 
 async function fetchClubs() {
-  const response = await fetch(`${API_URL}/clubs`);
+  const response = await fetch(CLUBS_API_URL);
   all_clubs = await response.json();
   console.log(all_clubs);
   for (let club of all_clubs) {
