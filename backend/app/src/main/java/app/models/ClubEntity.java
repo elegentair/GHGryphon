@@ -1,7 +1,7 @@
 package app.models;
 
 import io.ebean.Model;
-import io.ebean.annotation.DbJson;
+import io.ebean.annotation.DbArray;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -19,7 +19,7 @@ public class ClubEntity extends Model implements HttpInterface { // required cla
     public String createdAt;
     public String name;
     public String description;
-    @DbJson
+    @DbArray
     public List<String> users;
     public String thumbnail;
     @Id // setting primary key to id (unique identifier for each club)

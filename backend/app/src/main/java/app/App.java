@@ -10,10 +10,20 @@ import app.models.ClubEntity;
 
 public class App {
     public static void main(String[] args) {
+        System.out.println("HEALTH CHECK: " + DB.sqlQuery("SELECT 1")
+            .mapToScalar(Integer.class)
+            .findOne()
+        );
+
         // database config:
         Seeder.seed();
 
-        Database database = DB.getDefault();
+        //Database database = DB.getDefault();
+        Database database = Database.builder()
+            .name("db")
+            .loadFromProperties()
+            .build();
+        
         HttpHandler<UserEntity> userHandler = new HttpHandler<>(database, UserEntity.class);
         HttpHandler<ClubEntity> clubHandler = new HttpHandler<>(database, ClubEntity.class);
         
@@ -38,6 +48,6 @@ public class App {
             // -------------------------delete methods-------------------------
             config.routes.delete("/api/users/{id}", ctx -> userHandler.delete(ctx, "User"));
             config.routes.delete("/api/clubs/{id}", ctx -> clubHandler.delete(ctx, "Club"));
-        }).start(7070); // use port 5432 for remote database
+        }).start(5432); // use port 5432 for remote database
     }
 }

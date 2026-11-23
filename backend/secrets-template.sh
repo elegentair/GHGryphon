@@ -4,3 +4,5 @@
 
 export REMOTE_USERNAME="postgres.YourProjectRef"
 export REMOTE_PASSWORD="YourPassword"
+# YourUrlRegion shoud look something like aws-1-us-west-2
+export REMOTE_URL="jdbc:postgresql://YourUrlRegion.pooler.supabase.com:5432/postgres"

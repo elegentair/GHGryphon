@@ -1,12 +1,12 @@
 ebean:
-  dbSchema: app
+  dbSchema: public
+  tenantMode: NONE
   ddl:
-    generate: true
     run: true
 
 datasource:
-  db:
-    username: sa
-    password: ""
-    url: jdbc:h2:mem:app;DB_CLOSE_DELAY=-1
-    driver: org.h2.Driver
+  db:   
+    username: ${REMOTE_USERNAME}
+    password: ${REMOTE_PASSWORD}
+    url: ${REMOTE_URL}
+    driver: org.postgresql.Driver
