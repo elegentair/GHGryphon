@@ -8,12 +8,10 @@ import app.models.UserEntity;
 import app.models.ClubEntity;
 
 public class LocalAppTest {
-    // this line is not necessary if you are using this file to store a main function to run the app
     private Javalin appInstance;
     
-    // this is a constructor instead of a main function for the purposes of JUnit Jupiter testing
+    // create and seed the local database and run it on a local port
     public void initializeApp() {
-    //public static void main(String[] args) {
         // database config:
         Seeder.seed();
 
@@ -33,8 +31,6 @@ public class LocalAppTest {
         HttpHandler<UserEntity> userHandler = new HttpHandler<>(database, UserEntity.class);
         HttpHandler<ClubEntity> clubHandler = new HttpHandler<>(database, ClubEntity.class);
 
-        // you do not need to store this as a variable if you are using this file to store a main function for the app
-        // unless you need to store a reference to the Javalin instance to stop it later (currently not implemented)
         appInstance = Javalin.create(config -> {
             config.routes.get("/", ctx -> ctx.result("Hello World"));
             
@@ -59,9 +55,9 @@ public class LocalAppTest {
         });
     }
 
-    // these functions are not necessary if you are using this file to store a main function
-    public void startApp(int port) {
-        appInstance.start(port);
+    // i think these functions are self-explanatory
+    public void startApp() {
+        appInstance.start(7070);
     }
 
     public void stopApp() {

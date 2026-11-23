@@ -36,4 +36,7 @@ _Version information and other specifics are available in the Gradle build file:
 
 Install Gradle <span style="font-size: smaller;">(automatically handles dependencies)</span>: ```sdk install gradle```
 
-Run backend: Ensure you are in the backend directory and run ```./gradlew run```
+Configure Supabase secrets: Run ```cp secrets-template.sh secrets.sh``` while in the backend directory, and update ```secrets.sh``` to have Supabase credentials.
+  - Running these commands in the terminal will be necessary before executing the app with the remote Supabase (this is not set up yet)
+
+Run backend (local/legacy): Ensure you are in the backend directory and run ```./gradlew run```

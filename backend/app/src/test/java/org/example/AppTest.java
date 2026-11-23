@@ -27,10 +27,9 @@ class AppTest {
         // setup
         app = new LocalAppTest();
         app.initializeApp();
-        app.startApp(7070);
-        
+        app.startApp();
+
         // POST test
-        // port 7070 is hardcoded into this for now (change if you would like)
         HttpRequest postRequest = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:7070/api/users/"))
                 .header("Content-Type", "application/json")

@@ -7,7 +7,7 @@ import io.javalin.Javalin;
 import app.models.UserEntity;
 import app.models.ClubEntity;
 
-public class LocalApp {
+public class App {
     public static void main(String[] args) {
         // database config:
         Seeder.seed();
@@ -49,6 +49,6 @@ public class LocalApp {
             // -------------------------delete methods-------------------------
             config.routes.delete("/api/users/{id}", ctx -> userHandler.delete(ctx, "User"));
             config.routes.delete("/api/clubs/{id}", ctx -> clubHandler.delete(ctx, "Club"));
-        }).start(7070);
+        }).start(7070); // use port 5432 for remote database
     }
 }
