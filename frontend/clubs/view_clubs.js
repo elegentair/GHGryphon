@@ -1,5 +1,5 @@
-const API_ORIGIN = "https://6aea96643d3dd3d37be6cb9a.mockapi.io";
-const API_URL = `${API_ORIGIN}/api/v1`;
+const API_ORIGIN = "https:localhost:7070";
+const API_URL = `${API_ORIGIN}/api`;
 
 let all_clubs = [];
 
