@@ -7,6 +7,7 @@ A web application allowing L&amp;N students and staff to view, choose, and manag
 - Gradle 9.8.2
 ### Frameworks (Managed by Gradle):
 - Javalin - Web framework  
+- H2 - Database (currently local)
 - Ebean - Implements SQL
 - Jackson Databind - Converts between Java objects & JSON
 - SLF4J Simple - Javalin logger
@@ -21,9 +22,12 @@ _Version information and other specifics are available in the Gradle build file:
 
 ### Functionality:
 - Local H2 SQL database (users, clubs)
+  - Currently functional; tested through `AppTest.java`
   - Intention: Implement PostgreSQL (remote database)
   - Intention: Add other necessary GH records & relationally link
-- GET, POST, PUT, DELETE methods (users, clubs)
+- GET, POST, PUT, DELETE methods
+  - GET method can retrieve one entry <span style="font-size: smaller;">(only ID-based for now)</span> or all of them
+  - Generic HTTP methods (defined in `HttpHandler.java`) are applied to data in `App.java`
   - Possibility: Add PATCH method for transfer efficiency
 
 ### Instructions:
