@@ -1,4 +1,4 @@
-const API_ORIGIN = "127.0.0.1:7070";
+const API_ORIGIN = "http://127.0.0.1:7070";
 const API_URL = `${API_ORIGIN}/api`;
 
 let all_clubs = [];
