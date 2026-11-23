@@ -5,7 +5,7 @@ package org.example;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import app.App;
+import app.LocalAppTest;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,17 +15,17 @@ import java.net.http.HttpResponse;
 class AppTest {
     /*@Test
     void appHasAGreeting() {
-        //App classUnderTest = new App();
+        //LocalAppTest classUnderTest = new LocalAppTest();
         //assertNotNull(classUnderTest.getGreeting(), "app should have a greeting");
     }*/
 
-    private static App app;
+    private static LocalAppTest app;
     private static final HttpClient client = HttpClient.newHttpClient();
 
     @Test
     void testPost() throws Exception {
         // setup
-        app = new App();
+        app = new LocalAppTest();
         app.initializeApp();
         app.startApp(7070);
         
