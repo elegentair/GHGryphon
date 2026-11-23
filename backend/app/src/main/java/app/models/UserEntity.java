@@ -12,21 +12,25 @@ import app.HttpInterface;
 
 // class is connected to ebeans model class
 public class UserEntity extends Model implements HttpInterface { // required class, file name
-
+    public String createdAt;
+    public String name; // name of user
+    public String avatar; // profile picture URL
+    public String password; // user password (PLAIN TEXT FOR TESTING ONLY)
+    public String email; // email
+    public Integer grade; // user grade
+    
     @Id // setting primary key to id (unique identifier for each club)
     public Long id; // defines id as a 64 bit int, ebean will auto generate for each club
-    public String name; // name of user
-    public String email; // user email
-    public String imageURL; // profile picture URL
-    public Integer grade; // user grade
 
     public UserEntity() {} // empty construtor for this file needed by ebean
 
     // constructor we use to make users in java code
-    public UserEntity(String name, String email, String imageURL, Integer grade) {
+    public UserEntity(String createdAt, String name, String avatar, String password, String email) {
+        this.createdAt = createdAt;
         this.name = name;
+        this.avatar = avatar;
+        this.password = password;
         this.email = email;
-        this.imageURL = imageURL;
         this.grade = grade;
     }
 

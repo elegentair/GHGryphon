@@ -1,35 +1,39 @@
 package app.models;
 
 import io.ebean.Model;
+import io.ebean.annotation.DbJson;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 import app.HttpInterface;
 
+import java.util.List;
+import java.util.ArrayList;
+
 @Entity // tells ebean that this is a sql table
 @Table(name = "clubs") // names the table "clubs"
 
 // class is connected to ebeans model class
 public class ClubEntity extends Model implements HttpInterface { // required class, file name
-
+    public String createdAt;
+    public String name;
+    public String description;
+    @DbJson
+    public List<String> users;
+    public String thumbnail;
     @Id // setting primary key to id (unique identifier for each club)
     public Long id; // defines id as a 64 bit int, ebean will auto generate for each club
-    public String name; // club name
-    public String imageURL; // club image
-    public String description; // club description
-    public String creationTimestamp; // timestamp of club creation
-    public Integer memberCount; // member count
 
     public ClubEntity() {} // empty construtor for this file needed by ebean
 
     // constructor we use to make clubs in java code
-    public ClubEntity(String name, String imageURL, String description, String creationTimestamp, Integer memberCount) {
+    public ClubEntity(String createdAt, String name, String description, List<String> users, String thumbnail) {
+        this.createdAt = createdAt;
         this.name = name;
-        this.imageURL = imageURL;
         this.description = description;
-        this.creationTimestamp = creationTimestamp;
-        this.memberCount = memberCount;
+        this.users = users;
+        this.thumbnail = thumbnail;
     }
 
     public void setId(Long id) {
