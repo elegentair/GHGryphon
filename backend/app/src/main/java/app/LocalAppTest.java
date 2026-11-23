@@ -7,7 +7,7 @@ import io.javalin.Javalin;
 import app.models.UserEntity;
 import app.models.ClubEntity;
 
-public class App {
+public class LocalAppTest {
     // this line is not necessary if you are using this file to store a main function to run the app
     private Javalin appInstance;
     

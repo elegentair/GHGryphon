@@ -3,7 +3,7 @@ A web application allowing L&amp;N students and staff to view, choose, and manag
 
 ## Backend Setup
 ### Prerequisites:
-- Java 25 <span style="font-size: smaller;">(required for LTS)</span>
+- Java 25 <span style="font-size: smaller;">(required for LTS; we use 25.0.5.1+2-tem)</span>
 - Gradle 9.8.2
 ### Frameworks (Managed by Gradle):
 - Javalin - Web framework  
@@ -31,8 +31,8 @@ _Version information and other specifics are available in the Gradle build file:
   - Possibility: Add PATCH method for transfer efficiency
 
 ### Instructions:
-**Recommended:** Install Temurin Java 25.0.5.0+8 with sdkman:
-```sdk install java 25.0.5.0+8-tem``` <span style="font-size: smaller;">(other Java 25 builds should work as well)</span>
+**Recommended:** Install Temurin Java 25.0.5.1+2-tem with sdkman:
+```sdk install java 25.0.5.1+2-tem``` <span style="font-size: smaller;">(other Java 25 builds with LTS should work as well)</span>
 
 Install Gradle <span style="font-size: smaller;">(automatically handles dependencies)</span>: ```sdk install gradle```
 
