@@ -13,7 +13,10 @@ async function fetchClubs() {
         <img src='${club["thumbnail"]}' alt='${club["name"]}'>
         <h3>${club["name"]}</h3>
         <p>${club["description"]}</p>
+        <div style="display: flex; gap: 16px;">
         <a class='card_edit_button' href='edit_club.html?id=${club["id"]}'>Edit</a>
+        <a class='card_edit_button' href='../users/view_user.html?id=${club["id"]}'>Club Members</a>
+        </div>
       </div>`;
   }
 
