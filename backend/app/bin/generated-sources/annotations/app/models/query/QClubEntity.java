@@ -29,6 +29,9 @@ public final class QClubEntity extends io.ebean.typequery.QueryBean<app.models.C
 
   public PLong<QClubEntity> id;
   public PString<QClubEntity> name;
+  public PString<QClubEntity> imageURL;
+  public PString<QClubEntity> description;
+  public PString<QClubEntity> creationTimestamp;
   public PInteger<QClubEntity> memberCount;
 
 
@@ -98,6 +101,9 @@ public final class QClubEntity extends io.ebean.typequery.QueryBean<app.models.C
   public static final class Alias {
     public static PLong<QClubEntity> id = _alias.id;
     public static PString<QClubEntity> name = _alias.name;
+    public static PString<QClubEntity> imageURL = _alias.imageURL;
+    public static PString<QClubEntity> description = _alias.description;
+    public static PString<QClubEntity> creationTimestamp = _alias.creationTimestamp;
     public static PInteger<QClubEntity> memberCount = _alias.memberCount;
   }
 
@@ -108,6 +114,9 @@ public final class QClubEntity extends io.ebean.typequery.QueryBean<app.models.C
 
     public PLong<R> id;
     public PString<R> name;
+    public PString<R> imageURL;
+    public PString<R> description;
+    public PString<R> creationTimestamp;
     public PInteger<R> memberCount;
 
     public Assoc(String name, R root) { super(name, root); }

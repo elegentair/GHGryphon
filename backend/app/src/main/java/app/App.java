@@ -1,6 +1,7 @@
 package app;
 
 import io.ebean.Database;
+import io.ebean.DB;
 import io.ebean.datasource.DataSourceBuilder;
 import io.javalin.Javalin;
 
@@ -12,19 +13,7 @@ public class App {
         // database config:
         Seeder.seed();
 
-        var dataSource = DataSourceBuilder.create()
-            .username("sa")
-            .password("")
-            // store data in file (data/clubs)
-            .url("jdbc:h2:./data/clubs;");
-
-        Database database = Database.builder()
-            .name("db")
-            .dataSourceBuilder(dataSource)
-            .ddlGenerate(true) // generate table if not already existing
-            .ddlRun(true) // run table generation
-            .build();
-
+        Database database = DB.getDefault();
         HttpHandler<UserEntity> userHandler = new HttpHandler<>(database, UserEntity.class);
         HttpHandler<ClubEntity> clubHandler = new HttpHandler<>(database, ClubEntity.class);
         

@@ -1,9 +1,12 @@
 ebean:
+  dbSchema: app
+  ddl:
+    generate: true
+    run: true
+
+datasource:
   db:
-    ddl:
-      generate: true
-      run: true # Automatically creates your UserEntity tables in Supabase on first run
-    username: ${REMOTE_USERNAME}
-    password: ${REMOTE_PASSWORD}
-    url: jdbc:postgresql://aws-0-us-east-1.pooler.supabase.com:5432/postgres
-    driver: org.postgresql.Driver
+    username: sa
+    password: ""
+    url: jdbc:h2:mem:app;DB_CLOSE_DELAY=-1
+    driver: org.h2.Driver

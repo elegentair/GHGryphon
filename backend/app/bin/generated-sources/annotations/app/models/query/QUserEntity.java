@@ -30,6 +30,7 @@ public final class QUserEntity extends io.ebean.typequery.QueryBean<app.models.U
   public PLong<QUserEntity> id;
   public PString<QUserEntity> name;
   public PString<QUserEntity> email;
+  public PString<QUserEntity> imageURL;
   public PInteger<QUserEntity> grade;
 
 
@@ -100,6 +101,7 @@ public final class QUserEntity extends io.ebean.typequery.QueryBean<app.models.U
     public static PLong<QUserEntity> id = _alias.id;
     public static PString<QUserEntity> name = _alias.name;
     public static PString<QUserEntity> email = _alias.email;
+    public static PString<QUserEntity> imageURL = _alias.imageURL;
     public static PInteger<QUserEntity> grade = _alias.grade;
   }
 
@@ -111,6 +113,7 @@ public final class QUserEntity extends io.ebean.typequery.QueryBean<app.models.U
     public PLong<R> id;
     public PString<R> name;
     public PString<R> email;
+    public PString<R> imageURL;
     public PInteger<R> grade;
 
     public Assoc(String name, R root) { super(name, root); }
